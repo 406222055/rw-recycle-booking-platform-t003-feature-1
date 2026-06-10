@@ -17,6 +17,7 @@ CREATE TABLE recycle_appointment (
   recycler_name VARCHAR(60) DEFAULT '',
   estimated_amount DECIMAL(10, 2) NOT NULL DEFAULT 0,
   note TEXT,
+  reschedule_reason TEXT,
   created_at TIMESTAMP NOT NULL,
   updated_at TIMESTAMP NOT NULL,
   CONSTRAINT fk_recycle_appointment_category
@@ -48,6 +49,7 @@ INSERT INTO recycle_appointment (
   recycler_name,
   estimated_amount,
   note,
+  reschedule_reason,
   created_at,
   updated_at
 ) VALUES
@@ -64,6 +66,24 @@ INSERT INTO recycle_appointment (
     '周师傅',
     120.00,
     '师傅已电话确认上门时间',
+    NULL,
     '2026-06-10 09:10:00',
     '2026-06-10 10:20:00'
+  ),
+  (
+    'AP20260610002',
+    '陈先生',
+    '13900002222',
+    '徐汇区漕溪北路 45 号',
+    'furniture',
+    '三人沙发一套，需要两人搬运',
+    '2026-06-20',
+    '09:00-12:00',
+    'pending',
+    '',
+    0.00,
+    '',
+    '客户临时有事，需要改期到下周',
+    '2026-06-10 11:02:00',
+    '2026-06-10 14:30:00'
   );

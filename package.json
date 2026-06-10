@@ -1,0 +1,12 @@
+{
+  "name": "recycle-booking-platform",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev:api": "npm --prefix backend start",
+    "smoke": "npm --prefix backend run smoke"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

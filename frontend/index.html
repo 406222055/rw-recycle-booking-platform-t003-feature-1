@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>旧物回收上门预约服务平台</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Recycle Booking</p>
+        <h1>旧物回收上门预约服务平台</h1>
+      </div>
+      <div class="summary">
+        <span id="summaryTotal">0 单</span>
+        <small>当前预约</small>
+      </div>
+    </header>
+
+    <main class="shell">
+      <section class="booking-panel" aria-labelledby="bookingTitle">
+        <div class="section-heading">
+          <p class="eyebrow">用户预约</p>
+          <h2 id="bookingTitle">提交上门回收需求</h2>
+        </div>
+
+        <form id="bookingForm" class="form-grid">
+          <label>
+            联系人
+            <input name="customerName" placeholder="例如：王女士" required>
+          </label>
+          <label>
+            联系电话
+            <input name="phone" placeholder="11 位手机号" inputmode="numeric" required>
+          </label>
+          <label class="wide">
+            上门地址
+            <input name="address" placeholder="小区、楼栋、门牌号" required>
+          </label>
+          <label>
+            回收品类
+            <select name="category" id="categorySelect" required></select>
+          </label>
+          <label>
+            预约日期
+            <input name="preferredDate" type="date" required>
+          </label>
+          <label>
+            预约时段
+            <select name="preferredTime" required>
+              <option value="09:00-12:00">09:00-12:00</option>
+              <option value="14:00-18:00">14:00-18:00</option>
+              <option value="18:00-20:00">18:00-20:00</option>
+            </select>
+          </label>
+          <label class="wide">
+            物品说明
+            <textarea name="itemDescription" rows="4" placeholder="写清物品数量、大小、楼层、电梯情况" required></textarea>
+          </label>
+          <label class="wide">
+            备注
+            <input name="note" placeholder="可填写停车、搬运或联系时间要求">
+          </label>
+          <button type="submit">提交预约</button>
+          <p id="formMessage" class="message" role="status"></p>
+        </form>
+      </section>
+
+      <section class="operations-panel" aria-labelledby="operationsTitle">
+        <div class="section-heading">
+          <p class="eyebrow">平台处理</p>
+          <h2 id="operationsTitle">预约单处理</h2>
+        </div>
+
+        <div class="filters">
+          <select id="statusFilter" aria-label="按状态筛选">
+            <option value="all">全部状态</option>
+            <option value="pending">待确认</option>
+            <option value="scheduled">已预约</option>
+            <option value="assigned">已派单</option>
+            <option value="completed">已完成</option>
+            <option value="cancelled">已取消</option>
+          </select>
+          <input id="keywordInput" placeholder="搜索联系人、电话、地址或物品">
+        </div>
+
+        <div id="appointmentList" class="appointment-list"></div>
+      </section>
+    </main>
+
+    <div id="rescheduleModal" class="modal hidden" aria-hidden="true">
+      <div class="modal-backdrop" data-role="closeModal"></div>
+      <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="rescheduleTitle">
+        <div class="modal-header">
+          <h3 id="rescheduleTitle">预约改期</h3>
+          <button type="button" class="modal-close" data-role="closeModal" aria-label="关闭">×</button>
+        </div>
+        <form id="rescheduleForm" class="modal-body">
+          <input type="hidden" name="appointmentId">
+          <p class="reschedule-info" id="rescheduleInfo"></p>
+          <label>
+            预约日期
+            <input name="preferredDate" type="date" required>
+          </label>
+          <label>
+            预约时段
+            <select name="preferredTime" required>
+              <option value="09:00-12:00">09:00-12:00</option>
+              <option value="14:00-18:00">14:00-18:00</option>
+              <option value="18:00-20:00">18:00-20:00</option>
+            </select>
+          </label>
+          <label class="wide">
+            改期原因
+            <textarea name="rescheduleReason" rows="3" placeholder="请填写改期原因" required></textarea>
+          </label>
+          <p id="rescheduleMessage" class="message" role="status"></p>
+          <div class="modal-actions">
+            <button type="button" class="btn-secondary" data-role="closeModal">取消</button>
+            <button type="submit">确认改期</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
